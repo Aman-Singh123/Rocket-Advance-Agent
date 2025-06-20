@@ -169,7 +169,7 @@ const DashboardLayout = ({ children }) => {
                   setShowContact(false);
                 }}
               >
-                {pathname === "/dashboard" ? <DashboardIconFill /> : <DashboardIcon />}
+                <DashboardIcon />
               </div>
               <div
                 className=""
@@ -178,7 +178,7 @@ const DashboardLayout = ({ children }) => {
                   setShowContact(false);
                 }}
               >
-                {pathname === "/my-deals" ? <ProfileIcon /> : <UserIconUnfilled />}
+                <UserIconUnfilled />
               </div>
               <div
                 className=""
@@ -188,7 +188,7 @@ const DashboardLayout = ({ children }) => {
                 }}
 
               >
-                {pathname === "/new-deals" ? <NewDeals /> : <NewDealsOutlined />}
+                <NewDeals />
               </div>
 
               <div
@@ -199,7 +199,7 @@ const DashboardLayout = ({ children }) => {
                 }}
 
               >
-                {pathname === "/documents" ? <DocumentsIcon /> : <DocumentsIconFilled />}
+                <DocumentsIcon />
               </div>
 
             </div>
@@ -208,125 +208,125 @@ const DashboardLayout = ({ children }) => {
           <>
             {/* Default Mobile Layout */}
             <div className="mobile-top-header"
-                style={{
-                  backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
-                }} >
-            <div className="broker-box">
-              {pathname === "/dashboard" ? <DashboardIconFill /> : pathname === "/my-deals" ? <ProfileIcon /> : pathname === "/new-deals" ? <NewDealsWhiteOutlined /> : <DocumentsIconFilled />}
-                  <span className="broker-text"
-                    style={{
-                      color: pathname === "/new-deals" ? "white" : "inherit",
-                    }}>
-                {pathname === "/dashboard" ? "Agent" : pathname === "/my-deals" ? "My Deals" : pathname === "/new-deals" ? "New Deals" : "Documents"}
-              </span>
-            </div>
-            <div className="top-icons">
-              <BellOutlined className="top-icon" style={{ color : iconColor }} />
-              <div className="more-wrapper">
-                <MoreOutlined
-                  className="top-icon-dot rotated"
-                      onClick={() => setShowPopup((prev) => !prev)}
-                      style={{ color: iconColor }}
-                />
-                {showPopup && (
-                  <>
-                    <div className="overlay" onClick={() => setShowPopup(false)}></div>
-                    <div className="popup">
-                      <div
-                        onClick={() => {
-                          setShowContact(true);
-                          setShowPopup(false);
-                        }}
-                        className="popup-box"
-                      >
-                        <ContactIcon className="popup-icon" />
-                        <span>Contact Us</span>
+              style={{
+                backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
+              }} >
+              <div className="broker-box">
+                {pathname === "/dashboard" ? <DashboardIconFill /> : pathname === "/my-deals" ? <ProfileIcon /> : pathname === "/new-deals" ? <NewDealsWhiteOutlined /> : <DocumentsIconFilled />}
+                <span className="broker-text"
+                  style={{
+                    color: pathname === "/new-deals" ? "white" : "inherit",
+                  }}>
+                  {pathname === "/dashboard" ? "Agent" : pathname === "/my-deals" ? "My Deals" : pathname === "/new-deals" ? "New Deals" : "Documents"}
+                </span>
+              </div>
+              <div className="top-icons">
+                <BellOutlined className="top-icon" style={{ color: iconColor }} />
+                <div className="more-wrapper">
+                  <MoreOutlined
+                    className="top-icon-dot rotated"
+                    onClick={() => setShowPopup((prev) => !prev)}
+                    style={{ color: iconColor }}
+                  />
+                  {showPopup && (
+                    <>
+                      <div className="overlay" onClick={() => setShowPopup(false)}></div>
+                      <div className="popup">
+                        <div
+                          onClick={() => {
+                            setShowContact(true);
+                            setShowPopup(false);
+                          }}
+                          className="popup-box"
+                        >
+                          <ContactIcon className="popup-icon" />
+                          <span>Contact Us</span>
+                        </div>
+                        <div className="popup-box" onClick={() => isLogged(navigate)}>
+                          <LogoutIconMobileScreen className="popup-icon" />
+                          <span>Logout</span>
+                        </div>
                       </div>
-                      <div className="popup-box" onClick={() => isLogged(navigate)}>
-                        <LogoutIconMobileScreen className="popup-icon" />
-                        <span>Logout</span>
-                      </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
 
-        <div className="mobile-main-content" style={{
-          paddingBottom: "100px",
-          backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
-        }}>{children}</div>
-        <div className={pathname === "/my-deals" || pathname === "/new-deals" ? "profile-height mobile-bottom-nav " : "mobile-bottom-nav"}
+            <div className="mobile-main-content" style={{
+              paddingBottom: "100px",
+              backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
+            }}>{children}</div>
+            <div className={pathname === "/my-deals" || pathname === "/new-deals" ? "profile-height mobile-bottom-nav " : "mobile-bottom-nav"}
 
-        >
-          <div className=""
-            onClick={() => navigate("/dashboard")}
-          >
-            {pathname === "/dashboard" ? <DashboardIconFill /> : <DashboardIcon />}
-          </div>
-          <div
-            className=""
-            onClick={() => navigate("/my-deals")}
-          >
-            {pathname === "/my-deals" ? <ProfileIcon /> : <UserIconUnfilled />}
-          </div>
-          <div
-            className=""
-            onClick={() => navigate("/new-deals")}
-          >
-            {pathname === "/new-deals" ? <NewDealsOutlined /> : <NewDeals />}
-          </div>
+            >
+              <div className=""
+                onClick={() => navigate("/dashboard")}
+              >
+                {pathname === "/dashboard" ? <DashboardIconFill /> : <DashboardIcon />}
+              </div>
+              <div
+                className=""
+                onClick={() => navigate("/my-deals")}
+              >
+                {pathname === "/my-deals" ? <ProfileIcon /> : <UserIconUnfilled />}
+              </div>
+              <div
+                className=""
+                onClick={() => navigate("/new-deals")}
+              >
+                {pathname === "/new-deals" ? <NewDealsOutlined /> : <NewDeals />}
+              </div>
 
-          <div
-            className=""
-            onClick={() => navigate("/documents")}
-          >
-            {pathname === "/documents" ? <DocumentsIconFilled /> : <DocumentsIcon />}
-          </div>
-        </div>
-      </>
-    )
-  }
+              <div
+                className=""
+                onClick={() => navigate("/documents")}
+              >
+                {pathname === "/documents" ? <DocumentsIconFilled /> : <DocumentsIcon />}
+              </div>
+            </div>
+          </>
+        )
+        }
       </div >
     );
   }
 
 
 
-return (
-  <div className="mainLayout">
-    <Layout>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={setCollapsed}
-        trigger={null}
-      >
-        <div className="logo">
-          <img src={Logo} alt="Logo" />
-        </div>
-        <Menu
-          className={collapsed ? "collapsed" : ""}
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={[
-            (pathname === "/dashboard" && "dashboard") ||
-            (pathname === "/my-deals" && "myDeals") ||
-            (pathname === "/new-deals" && "newdeals") ||
-            (pathname === "/documents" && "documents") || (pathname === "/verify" && "dashboard"),
-          ]}
-          items={menuItems}
-        />
-      </Sider>
+  return (
+    <div className="mainLayout">
+      <Layout>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={setCollapsed}
+          trigger={null}
+        >
+          <div className="logo">
+            <img src={Logo} alt="Logo" />
+          </div>
+          <Menu
+            className={collapsed ? "collapsed" : ""}
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={[
+              (pathname === "/dashboard" && "dashboard") ||
+              (pathname === "/my-deals" && "myDeals") ||
+              (pathname === "/new-deals" && "newdeals") ||
+              (pathname === "/documents" && "documents") || (pathname === "/verify" && "dashboard"),
+            ]}
+            items={menuItems}
+          />
+        </Sider>
 
-      <Layout className="site-layout">
-        <Header />
-        <Content className="content">{children}</Content>
+        <Layout className="site-layout">
+          <Header />
+          <Content className="content">{children}</Content>
+        </Layout>
       </Layout>
-    </Layout>
-  </div>
-);
+    </div>
+  );
 };
 
 export default DashboardLayout;

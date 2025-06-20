@@ -33,9 +33,8 @@ export default function Documents() {
         ...item,
         upload: (
           <span
-            className={`cursorPointer ${
-              uploadDisable ? "uploadBtnIconDisable" : "uploadBtnIcon"
-            }  `}
+            className={`cursorPointer ${uploadDisable ? "uploadBtnIconDisable" : "uploadBtnIcon"
+              }  `}
             onClick={() =>
               !uploadDisable &&
               uploadLink &&
@@ -44,7 +43,7 @@ export default function Documents() {
           >
             <div>
 
-            <UploadIcon />
+              <UploadIcon />
             </div>
             {/* <br /> */}
             {stageRejected ? <div className="reupload">Re-upload</div> : null}
@@ -67,6 +66,8 @@ export default function Documents() {
   useEffect(() => {
     fetchDealDetail();
   }, []);
+
+
 
   return (
     <div className="document">
@@ -99,6 +100,51 @@ export default function Documents() {
             pagination={false}
           />
         </div>
+      </div>
+
+      {/* Mobile Cards */}
+      <div className="mobileCardsView">
+        {dataSource.map((item, idx) => {
+          const uploadDisable = disabledUpload.includes(item?.Supporting_Doc_Status);
+          const stageRejected = item?.Supporting_Doc_Status === "Rejected";
+          const uploadLink = item?.Submit_Supporting_Doc_Form;
+
+          const handleUploadClick = () => {
+            if (uploadDisable || !uploadLink) return;
+            window.open(uploadLink, "_blank", "width=750,height=600");
+          };
+
+          return (
+            <div className="mobileCard" key={idx}>
+              <div className="cardHeader">
+                <div className="label">Document Name</div>
+                <p className="docTitle">{item?.Supporting_Doc_Type}</p>
+              </div>
+              <hr className="horizontal-line" />
+              <div className="cardDetails">
+                <div>
+                  <div className="label">For</div>
+                  <div className="value">{item?.Deal_Name}</div>
+                </div>
+                <div>
+                  <div className="label">Status</div>
+                  <div className={`statusTag ${stateClass(item?.Supporting_Doc_Status)}`}>
+                    {item?.Supporting_Doc_Status}
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`uploadBtnWrapper ${uploadDisable ? "disabled" : ""}`}
+                onClick={handleUploadClick}
+              >
+                <UploadIcon />
+                <span className="uploadText">
+                  {stageRejected ? "Re-upload" : "Upload"}
+                </span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
