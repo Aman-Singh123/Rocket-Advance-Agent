@@ -1,0 +1,23 @@
+.submitDeals {
+    // margin-top: 18px;
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--dark1);
+    margin-bottom: 25px;
+    @media (max-width: 991px) {
+      font-size: 18px;
+    }
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.buttonOuter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}

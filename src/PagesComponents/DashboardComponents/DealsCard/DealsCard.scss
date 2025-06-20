@@ -1,0 +1,140 @@
+.dealsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: space-between;
+
+  // min-height: 230px;
+  @media (max-width: 767px) {
+    min-height: auto;
+  }
+
+  &_imgSec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 37px;
+
+
+    @media (min-width: 410px) and (max-width:768px) {
+      justify-content: unset; // or 'flex-start'
+      gap: 20px;
+    }
+
+    &_dots {
+      cursor: pointer;
+    }
+
+    &_left {
+      width: 62px;
+      height: 62px;
+      // border-radius: 12px;
+      // background: rgba(202, 37, 67, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // padding: 10px;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    // white-space: nowrap;
+    color: var(--dark1);
+    margin: 0;
+
+    @media (min-width: 1400px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 450px) {
+      font-size: 14px;
+    }
+
+    @media (min-width:320px) and (max-width:450px) {
+      font-size: 16px;
+      
+    }
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--baseColor);
+
+    @media (min-width: 1400px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
+
+    // &.fontLg {
+    //   font-size: 42px;
+    //   @media (max-width: 991px) {
+    //     font-size: 32px;
+    //   }
+    //   @media (max-width: 767px) {
+    //     font-size: 24px;
+    //   }
+    // }
+  }
+
+  &_date {
+    padding-top: 5px;
+    border-top: 1px solid var(--dark1);
+    opacity: 0.3;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+    margin-top: auto;
+
+    @media (min-width: 1400px) {
+      font-size: 14px;
+    }
+  }
+}
+
+//DealsContainer CSS//
+.dealsContainer {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+
+  @media (min-width:370px) and (max-width:768px) {
+    gap: 16px;
+  }
+
+  @media (max-width: 410px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.advanceCard {
+  display: flex;
+  // flex-direction: column;
+  gap: 24px;
+  flex: 1;
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

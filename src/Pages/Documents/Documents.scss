@@ -1,0 +1,35 @@
+.document {
+  &_wrapper {
+    margin-top: 33px;
+    .uploadBtnIcon {
+      transition: 0.3s all; 
+      &:hover {
+        svg path{
+          stroke: var(--baseColor);
+        }
+      }
+    }
+    .uploadBtnIconDisable {
+      opacity: 0.5;
+      transition: 0.3s all; 
+      cursor:not-allowed;
+    }
+  }
+  .headingText {
+    text-align: center;
+  }
+}
+
+.reupload {
+  opacity: 40%;
+  color: var(--black);
+}
+.document {
+  table {
+    td {
+      &:last-child {
+        padding-left: 35px !important;
+      }
+    }
+  }
+}

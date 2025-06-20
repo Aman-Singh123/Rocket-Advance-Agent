@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+iframe.newDealsFrame {
+  width: 100%;
+  border: none;
+  height: calc(100vh - 330px);
+
+  @media (max-width: 767px) {
+    height: calc(100vh - 280px);
+  }
+}
+
+iframe.verifyFrame {
+  width: 100%;
+  border: 0;
+  height: 729.6px;
+  @media (max-width: 767px) {
+    height: 820px;
+  }
+  div {
+    padding: 0 !important;
+  }
+}
+div.templateWidth {
+  padding: 0 !important;
+}
+.templateWidth {
+  width: 100% !important;
+}
