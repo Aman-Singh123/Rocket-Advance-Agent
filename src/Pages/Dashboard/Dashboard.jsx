@@ -71,29 +71,43 @@ const Dashboard = () => {
         <div className="dashboard_right">
           <RightSidebarAgent />
           {offerWidgets.map((widget, index) => (
-            <div className="whiteCard preappoveCard" key={index}>
-              <div className="offerDetails">
-                <div className="preappove">You've been pre-approved for</div>
-                <div className="preappoveAmmount">
-                  ${numberWithCommas(widget.offerAmount.toFixed(2))}
-                </div>
-                <div className="actionspreappove">
-                  <a
-                    href={`/verify?link=${encodeURIComponent(
-                      widget.verificationLink
-                    )}`}
-                  >
-                    <ButtonCustom
-                      customClass="bgTrans"
-                      label={"Click to verify"}
-                    />
-                  </a>
-                </div>
-                <div className="dealno">
-                  <b>Deal №:</b> {widget.dealNo}
+            <>
+              {/* Desktop/Tablet Card */}
+              <div className="whiteCard preappoveCard" key={index}>
+                <div className="offerDetails">
+                  <div className="preappove">You've been pre-approved for</div>
+                  <div className="preappoveAmmount">
+                    ${numberWithCommas(widget.offerAmount.toFixed(2))}
+                  </div>
+                  <div className="actionspreappove">
+                    <a href={`/verify?link=${encodeURIComponent(widget.verificationLink)}`}>
+                      <ButtonCustom customClass="bgTrans" label={"Click to verify"} />
+                    </a>
+                  </div>
+                  <div className="dealno">
+                    <b>Deal №:</b> {widget.dealNo}
+                  </div>
                 </div>
               </div>
-            </div>
+
+              {/* Mobile-only Card */}
+              <div className="whiteCard preappoveCardMobile" key={`mobile-${index}`}>
+                <div className="mobileDetails">
+                  <div className="mobileTopRow">
+                    <div className="preappove">You've been pre-approved for</div>
+                    <div className="preappoveAmmount">
+                      ${numberWithCommas(widget.offerAmount.toFixed(2))}
+                    </div>
+                  </div>
+                  <div className="actionspreappoveMobile">
+                    <a href={`/verify?link=${encodeURIComponent(widget.verificationLink)}`}>
+                      <ButtonCustom customClass="bgTrans" label={"Click to verify"} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </>
           ))}
         </div>
       </div>

@@ -74,6 +74,10 @@
 .preappoveCard {
   padding: 40px 20px;
   margin-bottom: 20px;
+
+  @media (max-width:768px) {
+    display: none;
+  }
 }
 
 .preappove {
@@ -107,4 +111,40 @@
 .newDealsFrame1 {
   width: 100%;
   border: 0;
+}
+
+.preappoveCardMobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .preappoveCardMobile {
+    padding: 20px 16px;
+    display: block;
+
+    .mobileDetails {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .preappove {
+      font-size: 14px;
+      font-weight: 500;
+      color: #202224;
+    }
+
+    .preappoveAmmount {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--baseColor1);
+    }
+
+    .actionspreappoveMobile {
+      .bgTrans {
+        padding: 6px 14px;
+        font-size: 14px;
+      }
+    }
+  }
 }
