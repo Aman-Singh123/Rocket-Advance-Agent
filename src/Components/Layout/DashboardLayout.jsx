@@ -207,26 +207,19 @@ const DashboardLayout = ({ children }) => {
         ) : (
           <>
             {/* Default Mobile Layout */}
-            <div className="mobile-top-header"
-              style={{
-                backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
-              }} >
+            <div className="mobile-top-header">
               <div className="broker-box">
-                {pathname === "/dashboard" ? <DashboardIconFill /> : pathname === "/my-deals" ? <ProfileIcon /> : pathname === "/new-deals" ? <NewDealsWhiteOutlined /> : <DocumentsIconFilled />}
-                <span className="broker-text"
-                  style={{
-                    color: pathname === "/new-deals" ? "white" : "inherit",
-                  }}>
+                {pathname === "/dashboard" ? <DashboardIconFill /> : pathname === "/my-deals" ? <ProfileIcon /> : pathname === "/new-deals" ? <NewDealsOutlined /> : <DocumentsIconFilled />}
+                <span className="broker-text" >
                   {pathname === "/dashboard" ? "Agent" : pathname === "/my-deals" ? "My Deals" : pathname === "/new-deals" ? "New Deals" : "Documents"}
                 </span>
               </div>
               <div className="top-icons">
-                <BellOutlined className="top-icon" style={{ color: iconColor }} />
+                <BellOutlined className="top-icon" />
                 <div className="more-wrapper">
                   <MoreOutlined
                     className="top-icon-dot rotated"
                     onClick={() => setShowPopup((prev) => !prev)}
-                    style={{ color: iconColor }}
                   />
                   {showPopup && (
                     <>
@@ -255,7 +248,6 @@ const DashboardLayout = ({ children }) => {
 
             <div className="mobile-main-content" style={{
               paddingBottom: "100px",
-              backgroundColor: pathname === "/new-deals" ? "red" : "transparent",
             }}>{children}</div>
             <div className={pathname === "/my-deals" || pathname === "/new-deals" ? "profile-height mobile-bottom-nav " : "mobile-bottom-nav"}
 

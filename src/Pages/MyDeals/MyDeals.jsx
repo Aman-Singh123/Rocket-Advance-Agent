@@ -21,17 +21,94 @@ export default function MyDeals() {
   const [filter, setFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [visibleCount, setVisibleCount] = useState(4)
+  const [allDealsData, setAllDealsData] = useState([]);
+  const [filterOptions, setFilterOptions] = useState([]);
+
   const navigate = useNavigate();
+  // const fetchDealDetail = async () => {
+  
+  //   const { data, total } = await makeRequest(
+  //     `/agent/deals`,
+  //     "get",
+  //     undefined,
+  //     "",
+  //     navigate
+  //   );
+  //   if (!Object.keys(data || []).length) return;
+  //   setTotal(total);
+
+  //   const modifyResponse = data.map((item) => ({
+  //     ...item,
+  //     propertyAddr: (
+  //       <span style={{ maxWidth: 152, display: "block" }}>
+  //         {item.Property_Street_Address}
+  //       </span>
+  //     ),
+  //     requestAmendment: (
+  //       <ButtonCustom
+  //         customClass={`bgTrans ${!item.Request_Amendment_Form ? "disabled" : ""}`}
+  //         label={"Request Amendment"}
+  //         onClick={() => {
+  //           if (item.Request_Amendment_Form) {
+  //             window.open(
+  //               item.Request_Amendment_Form,
+  //               "_blank",
+  //               "width=750, height=600"
+  //             );
+  //           }
+  //         }}
+  //         disabled={!item.Request_Amendment_Form}
+  //       />
+  //     ),
+  //     Rocket_Advance_Contribution: `$${item.Rocket_Advance_Contribution
+  //       ? numberWithCommas(item.Rocket_Advance_Contribution.toFixed(2))
+  //       : 0}`,
+  //     Rocket_Advance_Net_Advance: `$${item.Rocket_Advance_Net_Advance
+  //       ? numberWithCommas(item.Rocket_Advance_Net_Advance.toFixed(2))
+  //       : 0}`,
+  //     Stage: (
+  //       <span className={`${stateClass(item?.Stage)} greyText textDecoration spaceNowrap`}>
+  //         {renameStatus(item?.Stage)}
+  //       </span>
+  //     ),
+  //     Closing_Date: item.Closing_Date && formatDate(item.Closing_Date, false),
+  //     Due_Date: item.Due_Date && formatDate(item.Due_Date, false),
+  //   }));
+
+  //   setAllDealsData(modifyResponse);   // store full data
+  //   setDataSource(modifyResponse);     // default view
+  // };
+  
+  // useEffect(() => {
+  //   fetchDealDetail();
+  // }, [page]);
+
   const fetchDealDetail = async () => {
     const { data, total } = await makeRequest(
-      `/agent/deals?filter=${filter || "all"}&page=${page}`,
+      `/agent/deals`,
       "get",
       undefined,
       "",
       navigate
     );
     if (!Object.keys(data || []).length) return;
+
     setTotal(total);
+
+    // Extract unique stage names for filter
+    const stageList = Array.from(
+      new Set(data.map((item) => item.Stage?.toLowerCase()))
+    ).filter(Boolean);
+
+    const options = [
+      { value: "all", label: "All" },
+      ...stageList.map((stage) => ({
+        value: stage,
+        label: renameStatus(stage),
+      })),
+    ];
+    setFilterOptions(options);
+
     const modifyResponse = data.map((item) => ({
       ...item,
       propertyAddr: (
@@ -57,18 +134,14 @@ export default function MyDeals() {
         />
       ),
       Rocket_Advance_Contribution: `$${item.Rocket_Advance_Contribution
-          ? numberWithCommas(item.Rocket_Advance_Contribution.toFixed(2))
-          : 0
-        }`,
+        ? numberWithCommas(item.Rocket_Advance_Contribution.toFixed(2))
+        : 0}`,
       Rocket_Advance_Net_Advance: `$${item.Rocket_Advance_Net_Advance
-          ? numberWithCommas(item.Rocket_Advance_Net_Advance.toFixed(2))
-          : 0
-        }`,
+        ? numberWithCommas(item.Rocket_Advance_Net_Advance.toFixed(2))
+        : 0}`,
       Stage: (
         <span
-          className={`${stateClass(
-            item?.Stage
-          )} greyText textDecoration spaceNowrap`}
+          className={`${stateClass(item?.Stage)} greyText textDecoration spaceNowrap`}
         >
           {renameStatus(item?.Stage)}
         </span>
@@ -76,12 +149,26 @@ export default function MyDeals() {
       Closing_Date: item.Closing_Date && formatDate(item.Closing_Date, false),
       Due_Date: item.Due_Date && formatDate(item.Due_Date, false),
     }));
+
+    setAllDealsData(modifyResponse);
     setDataSource(modifyResponse);
   };
 
   useEffect(() => {
     fetchDealDetail();
-  }, [page, filter]);
+  }, []);
+
+  useEffect(() => {
+    if (filter === "all") {
+      setDataSource(allDealsData);
+    } else {
+      const filtered = allDealsData.filter((item) =>
+        item.Stage?.props?.children?.toLowerCase()?.includes(filter)
+      );
+      setDataSource(filtered);
+    }
+  }, [filter]);
+
 
   return (
     <>
@@ -94,19 +181,18 @@ export default function MyDeals() {
             <button>Filter By</button>
             <Select
               className="selectBorderedCustom"
-              placeholder={"All"}
-              onChange={(e) => {
+              placeholder="All"
+              onChange={(value) => {
                 setPage(1);
-                setFilter(e);
+                setFilter(value);
               }}
-              dropdownRender={(menu) => (
-                <div style={{ minWidth: "fit-content" }}>{menu}</div>
-              )}
-              options={myDealsFilterOptions}
+              options={filterOptions}
+              value={filter}
             />
+
           </div>
           <ButtonCustom
-            
+
             customClass={"btnFilled"}
             label={"Submit a New Deal"}
             onClick={() => navigate("/new-deals")}
@@ -191,13 +277,6 @@ export default function MyDeals() {
                   </div>
                 </div>
                 <hr />
-
-                <div className="field">
-                  <div className="field-label">Agent Name</div>
-                  <div className="field-value">{item?.Contact_Name?.name}</div>
-                </div>
-                <hr />
-
                 <div className="flex-pair">
                   <div className="field">
                     <div className="field-label">Closing Date</div>
@@ -220,12 +299,24 @@ export default function MyDeals() {
                     <div className="field-value">{item.Rocket_Advance_Net_Advance}</div>
                   </div>
                 </div>
-
-                <div className="field">
-                  <div className="field-label">Income Made</div>
-                  <div className="field-value">{item?.Investor_Income}</div>
-                </div>
                 <hr />
+                <div>
+                  <button
+                    className={`requestAmendBtn ${!item.Request_Amendment_Form ? "disabled" : ""}`}
+                    onClick={() => {
+                      if (item.Request_Amendment_Form) {
+                        window.open(
+                          item.Request_Amendment_Form,
+                          "_blank",
+                          "width=750, height=600"
+                        );
+                      }
+                    }}
+                    disabled={!item.Request_Amendment_Form}
+                  >
+                    Request Amendment
+                  </button>
+                </div>
 
               </div>
 

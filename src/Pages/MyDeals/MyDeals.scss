@@ -36,6 +36,11 @@
   border: 1px solid #d5d5d560;
   justify-content: space-between;
   border-radius: 15px;
+  
+
+  @media (max-width : 768px) { 
+    width: 100%;
+  }
 
   button {
     background-color: transparent;
@@ -49,6 +54,10 @@
     font-size: 14px;
     color: #202224;
     font-weight: 400;
+
+    @media (max-width:768px) {
+      width: 70%;      
+    }
 
     &:nth-child(2) {
       border-left: 1px solid #d5d5d560;
@@ -284,6 +293,7 @@
           font-weight: 600;
           border-radius: 6px;
           margin-top: 10px;
+          padding: 6px 0px !important;
 
 
           &.approved {
@@ -369,4 +379,20 @@
   padding: 6px 16px !important;
   border-radius: 8px !important;
   text-decoration: none !important;
+}
+
+.requestAmendBtn {
+  padding: 8px 16px;
+  border: 1px solid #CA2543;
+  color: #000000 !important;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  background-color: white !important;
+  width: 100%;
+  &.disabled {
+    opacity: 1;
+    pointer-events: none;
+  }
 }
