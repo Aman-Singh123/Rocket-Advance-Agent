@@ -100,13 +100,13 @@ export default function Login() {
           options={[
             {
               value: "brokerAdministrator",
-              label: "Broker administrator",
-              disabled: true,
+              label: "Broker Administrator",
+              // disabled: true,
             },
             {
               value: "brocketOfRecord",
-              label: "Broker of record",
-              disabled: true,
+              label: "Broker of Record",
+              // disabled: true,
             },
             {
               value: "agent",
@@ -115,10 +115,10 @@ export default function Login() {
             {
               value: "inverstor",
               label: "Inverstor",
-              disabled: true,
+              // disabled: true,
             },
           ]}
-          value={"agent"}
+          value={"Agent"}
         />
       </div>
       <ButtonCustom label={"Login"} onClick={(e) => handleSubmit(e)} />
