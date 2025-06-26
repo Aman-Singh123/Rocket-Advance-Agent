@@ -79,6 +79,21 @@ const Dashboard = () => {
                   <div className="preappoveAmmount">
                     ${numberWithCommas(widget.offerAmount.toFixed(2))}
                   </div>
+                  <div className="deal-documents">
+                    <h2>The following documents are required for verification </h2>
+                    <ul>
+                      <li>  Listing Agreement (if listing agent)</li>
+                      <li>  Amendment Agreement (If original closing date of transaction is amended)</li>
+                      <li>  APS</li>
+                      <li> Trade Sheet</li>
+                      <li>  Proof of Deposit</li>
+                      <li> Broker Commission Agreement</li>
+                      <li> Receipts of Installments Received (if pre-con)</li>
+                      <li>Invoice for Builder (if pre-con)</li>
+                      <li> Production Report</li>
+                    </ul>
+                  </div>
+
                   <div className="actionspreappove">
                     <a href={`/verify?link=${encodeURIComponent(widget.verificationLink)}`}>
                       <ButtonCustom customClass="bgTrans" label={"Click to verify"} />
@@ -104,9 +119,23 @@ const Dashboard = () => {
                       <ButtonCustom customClass="bgTrans" label={"Click to verify"} />
                     </a>
                   </div>
+
+                </div>
+                <div className="deal-documents">
+                  <h2>The following documents are required for verification </h2>
+                  <ul>
+                    <li>  Listing Agreement (if listing agent)</li>
+                    <li>  Amendment Agreement (If original closing date of transaction is amended)</li>
+                    <li>  APS</li>
+                    <li> Trade Sheet</li>
+                    <li>  Proof of Deposit</li>
+                    <li> Broker Commission Agreement</li>
+                    <li> Receipts of Installments Received (if pre-con)</li>
+                    <li>Invoice for Builder (if pre-con)</li>
+                    <li> Production Report</li>
+                  </ul>
                 </div>
               </div>
-
             </>
           ))}
         </div>

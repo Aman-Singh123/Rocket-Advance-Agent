@@ -26,7 +26,7 @@ export default function VerifyDeal() {
   return (
     <div className="verifyDeals">
       <div className="newDeals_wrapper">
-        {iframeLink && (
+        {iframeLink && (  
           <iframe
             className="verifyFrame"
             src={iframeLink}
