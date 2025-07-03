@@ -80,17 +80,17 @@ const Dashboard = () => {
                     ${numberWithCommas(widget.offerAmount.toFixed(2))}
                   </div>
                   <div className="deal-documents">
-                    <h2>The following documents are required for verification </h2>
+                    <h2>The following documents may be required for verification:</h2>
                     <ul>
-                      <li>  Listing Agreement (if listing agent)</li>
-                      <li>  Amendment Agreement (If original closing date of transaction is amended)</li>
-                      <li>  APS</li>
+                      <li>  Listing Agreement [applicable if you are the listing agent]</li>
+                      <li> Amendment Agreement [if there has been a change to the original closing date]</li>
+                      <li> Agreement of Purchase and Sale [APS]</li>
                       <li> Trade Sheet</li>
-                      <li>  Proof of Deposit</li>
+                      <li> Proof of Deposit</li>
                       <li> Broker Commission Agreement</li>
-                      <li> Receipts of Installments Received (if pre-con)</li>
-                      <li>Invoice for Builder (if pre-con)</li>
-                      <li> Production Report</li>
+                      <li> Installment Receipts [required for pre-construction transactions]</li>
+                      <li>Builder Invoice [required for pre-construction transactions]</li>
+                      <li>Production Report</li>
                     </ul>
                   </div>
 
@@ -122,7 +122,7 @@ const Dashboard = () => {
 
                 </div>
                 <div className="deal-documents">
-                  <h2>TThe following documents may be required for verification:</h2>
+                  <h2>The following documents may be required for verification:</h2>
                   <ul>
                     <li>  Listing Agreement [applicable if you are the listing agent]</li>
                     <li> Amendment Agreement [if there has been a change to the original closing date]</li>
